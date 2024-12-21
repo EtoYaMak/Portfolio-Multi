@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Jersey";
+  src: url("./assets/Jersey10-Regular.ttf") format("truetype");
+}
+
+.newspaper-container {
+  @apply bg-[#f4f1ea] border-4 border-[#2b2b2b];
+  box-shadow: 8px 8px 0px #2b2b2b;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.newspaper-border {
+  @apply border-2 border-[#2b2b2b] m-2 p-4;
+  background-image: linear-gradient(#f4f1ea 2px, transparent 2px),
+    linear-gradient(90deg, #f4f1ea 2px, transparent 2px);
+  background-size: 50px 50px;
+  background-position: -2px -2px;
+}
+
+.newspaper-column {
+  @apply border-l-2 border-[#2b2b2b] pl-4 first:border-l-0 first:pl-0;
+}
+
+.perspective-container {
+  perspective: 1200px;
+  perspective-origin: center;
+  transform-style: preserve-3d;
+}
+
+.page-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.page-stack > * {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Add subtle shadow to stacked pages */
+.newspaper-container {
+  position: relative;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Add depth to stacked pages */
+.newspaper-container::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 4px;
+  right: -4px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  transform: translateZ(-1px);
+}
